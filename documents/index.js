@@ -1,15 +1,19 @@
 module.exports = ({ name, price1, price2, receiptId }) => {
+   // price1==address
+   // receiptId==phone
+   // price2==price
 	const today = new Date();
 
 	return `
-      <!doctype html>
+    <!doctype html>
       <html>
             <head>
                <meta charset='utf-8'>
                <title>PDF Result Template</title>
                <style>
                   .invoice-box {
-                     max-width: 800px;
+                     max-width: 300px;
+                     height:200px
                      margin: auto;
                      padding: 30px;
                      border: 1px solid #eee;
@@ -47,6 +51,7 @@ module.exports = ({ name, price1, price2, receiptId }) => {
                   }
                   .invoice-box table tr.information table td {
                      padding-bottom: 40px;
+                     width: 0%;
                   }
                   .invoice-box table tr.heading td {
                      background: #eee;
@@ -94,7 +99,8 @@ module.exports = ({ name, price1, price2, receiptId }) => {
                                           />
                                        </td>
                                        <td>
-                                          Date: ${`${today.getDate()}.${today.getMonth() + 1}.${today.getFullYear()}.`}
+                                           Date: ${`${today.getDate()}.${today.getMonth() + 1}.${today.getFullYear()}.`} 
+                                           
                                        </td>
                                     </tr>
                               </table>
@@ -105,34 +111,64 @@ module.exports = ({ name, price1, price2, receiptId }) => {
                               <table>
                                     <tr>
                                        <td>
-                                          Customer Name: ${name}
+                                          Receipt Number:  <br>
+                                          <b>Shauqh Luxury</b>
+                                          <br>
+                                            487, middle monipur, mirpur-2, <br> Dhaka -1216 <br>
+                                            shauqhluxury@gmail.com
+                                          
                                        </td>
                                        <td>
-                                          Receipt Number: ${receiptId}
+                                          ${name} <br>
+                                          <span>${price1} 
+                                          <span>
+                                          <br/>
+                                            <b>${receiptId}</b>
+                                          </span>
                                        </td>
                                     </tr>
                               </table>
                            </td>
                         </tr>
                         <tr class="heading">
-                           <td>Bought Items: </td>
+                           <td>Product: </td>
+                          
                            <td>Price</td>
                         </tr>
-                        <tr class="item">
-                           <td>First Item: </td>
-                           <td>${price1}</td>
+                        <tr class="item" >
+                           <td >Item</td>
+                           <td>${price2} BDT</td>
                         </tr>
-                        <tr class="item">
-                           <td>Second Item: </td>
-                           <td>${price2}</td>
-                        </tr>
+                        
                   </table>
                   <br />
-                  <h1 class="justify-center">
-                        Total Price: $ ${parseInt(price1) + parseInt(price2)}
-                  </h1>
+
+
+                  <table>
+                    <tr>
+                       <td>
+                         <img style="height: 135px;" src="https://scontent.fdac24-2.fna.fbcdn.net/v/t39.30808-6/466782527_122148054308289553_8014829567318296370_n.jpg?stp=dst-jpg_p843x403&_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=QlvLRcpv3HEQ7kNvgFD8YRv&_nc_zt=23&_nc_ht=scontent.fdac24-2.fna&_nc_gid=AQPzGv9Z5ES2oAp7IyyBVqA&oh=00_AYBUY3819Hi0X0O4FobIFKixnrk7ohO-OkODfRpT12TE6A&oe=673B6670" alt="">
+                          
+                       </td>
+                       <td>
+                          Quantity: 00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <br>
+                          Sub Total: ${price2} BDT
+                          <br>
+                          Delivery Charge: 60 BDT
+                          <br>
+                          COD FEE: 10 BDT
+                          <br>
+                          VAT (0%): 00 BDT
+                          <br>
+                          <b>Total: ${Number(price2)+70} BDT</b>
+                       </td>
+                    </tr>
+              </table>
                </div>
             </body>
       </html>
+
+
    `;
 };
